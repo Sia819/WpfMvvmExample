@@ -19,6 +19,8 @@ namespace Mvvmlight.BindingTest.ViewModel
             set { _text = value; }
         }
 
+        public string Text2 { get; set; }
+
         /// <summary>
         /// Any testing command 
         /// </summary>

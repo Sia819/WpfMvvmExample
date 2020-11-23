@@ -12,12 +12,14 @@
     </Window.DataContext>
     
     <StackPanel>
-        <TextBlock Text="{Binding Text, Mode=OneWay}"
+        
+        <TextBlock Text="{Binding Text2}"
                    Margin="5"/>
-        <TextBox Text="{Binding Text, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, FallbackValue='You can change some value.'}"
+        <TextBox Text="{Binding Text2}"
                  Margin="5"/>
         <Button Command="{Binding Test_Button}"
                 Content="Binded" 
                 Margin="5"/>
+
     </StackPanel>
 </Window>
