@@ -9,5 +9,5 @@
 ## Example
 ![screenshot_20171221-151714](https://raw.githubusercontent.com/Sia819/WPFSimpleBindingTest/master/demoFile/testing.gif)
 
-## used Nuget
+## used nuget
 ![screenshot_20171221-151714](https://github.com/Sia819/WPFSimpleBindingTest/blob/master/demoFile/nuget1.png)
