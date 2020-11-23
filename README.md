@@ -5,6 +5,8 @@
 |Test OS|Windows 10|
 |Target framework|.NET 5.0|
 |Output type|Windows Application|
+|using tool name|Visual Studio Community 2019|
+|Visual Studio version|16.8.2|
 
 ## Example
 ![screenshot_20171221-151714](https://raw.githubusercontent.com/Sia819/WPFSimpleBindingTest/master/demoFile/testing.gif)
