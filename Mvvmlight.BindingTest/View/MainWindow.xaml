@@ -6,7 +6,7 @@
         xmlns:viewmodel="clr-namespace:Mvvmlight.BindingTest.ViewModel"
         xmlns:local="clr-namespace:Mvvmlight.BindingTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="150" Width="400">
+        Title="MainWindow" Height="150" Width="350">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel/>
     </Window.DataContext>
