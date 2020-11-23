@@ -5,6 +5,7 @@
 |Test OS|Windows 10|
 |Target framework|.NET 5.0|
 |Output type|Windows Application|
+|project templates|WPF App (.NET)|
 |using tool name|Visual Studio Community 2019|
 |Visual Studio version|16.8.2|
 
