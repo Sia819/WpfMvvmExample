@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "mJ+hd4dMFQyvQmfk4iLES2tZOwjoohW5fihmYw4bF0mokhzaHo272ISXqaIBjY1NYWglpeM4IDuoWA+bWvtIeg==",
+  "success": true,
+  "projectFilePath": "P:\\github\\WPFSimpleBindingTest\\Mvvmlight.BindingTest\\Mvvmlight.BindingTest.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jjn97\\.nuget\\packages\\mvvmlightlibs\\5.4.1.1\\mvvmlightlibs.5.4.1.1.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MvvmLightLibs 5.4.1.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "MvvmLightLibs",
+      "targetGraphs": [
+        "net5.0-windows7.0"
+      ]
+    }
+  ]
+}
