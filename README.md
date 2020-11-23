@@ -1,6 +1,7 @@
 # WPFSimpleBindingTest
 
-
+|1|2|
+|----|----|
 |Test OS|Windows 10|
 |Target framework|.NET 5.0|
 |Output type|Windows Application|
