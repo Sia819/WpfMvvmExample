@@ -7,5 +7,7 @@
 |Output type|Windows Application|
 
 ## Example
+![screenshot_20171221-151714](https://raw.githubusercontent.com/Sia819/WPFSimpleBindingTest/master/demoFile/testing.gif)
 
-![screenshot_20171221-151714](https://raw.githubusercontent.com/Sia819/WPFSimpleBindingTest/master/testing.gif)
+## used Nuget
+![screenshot_20171221-151714](https://github.com/Sia819/WPFSimpleBindingTest/blob/master/demoFile/nuget1.png)
