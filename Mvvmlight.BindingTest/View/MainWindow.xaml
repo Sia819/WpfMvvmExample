@@ -1,10 +1,10 @@
-﻿<Window x:Class="Mvvmlight.BindingTest.MainWindow"
+﻿<Window x:Class="BindingTest.Mvvmlight.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewmodel="clr-namespace:Mvvmlight.BindingTest.ViewModel"
-        xmlns:local="clr-namespace:Mvvmlight.BindingTest"
+        xmlns:viewmodel="clr-namespace:BindingTest.Mvvmlight.ViewModel"
+        xmlns:local="clr-namespace:BindingTest.Mvvmlight"
         mc:Ignorable="d"
         Title="MainWindow" Height="150" Width="350">
     <Window.DataContext>

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Mvvmlight.BindingTest
+namespace BindingTest.Mvvmlight
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
