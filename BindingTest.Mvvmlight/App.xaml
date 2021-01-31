@@ -1,7 +1,7 @@
-﻿<Application x:Class="BindingTest.Mvvmlight.App"
+﻿<Application x:Class="JustBindingTest.Mvvmlight.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:BindingTest.Mvvmlight"
+             xmlns:local="clr-namespace:JustBindingTest.Mvvmlight"
              StartupUri="View\MainWindow.xaml">
     <Application.Resources>
          

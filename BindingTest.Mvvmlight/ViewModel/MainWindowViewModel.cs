@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace BindingTest.Mvvmlight.ViewModel
+namespace JustBindingTest.ViewModel
 {
     public class MainWindowViewModel
     {

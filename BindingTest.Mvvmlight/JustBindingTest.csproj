@@ -4,8 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <AssemblyName>BindingTest.Mvvmlight</AssemblyName>
-    <RootNamespace>BindingTest.Mvvmlight</RootNamespace>
+    <AssemblyName>JustBindingTest</AssemblyName>
+    <RootNamespace>JustBindingTest</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
