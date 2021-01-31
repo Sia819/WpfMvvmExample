@@ -1,4 +1,4 @@
-# WPFSimpleBindingTest
+# WpfMvvmExample
 
 ## Program info
 |Type|Information|
