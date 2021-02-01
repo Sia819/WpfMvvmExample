@@ -5,8 +5,55 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MvvmExample.UC"
              mc:Ignorable="d" 
+             Name="FoldableMenu"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    <UserControl.Resources>
+        <Storyboard x:Key="ShrinkWidth">
+            <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Width)"
+                             Storyboard.Target="{Binding ElementName=FoldableMenu}"
+                             Duration="0:0:0.5"
+                             To="0">
+                <DoubleAnimation.EasingFunction>
+                    <PowerEase EasingMode="EaseOut" Power="5" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="EnlargeWidth">
+            <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Width)"
+                             Storyboard.Target="{Binding ElementName=LeftFolderableMenu}"
+                             Duration="0:0:0.5"
+                             To="250">
+                <DoubleAnimation.EasingFunction>
+                    <PowerEase EasingMode="EaseOut" Power="5" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <UserControl.Style>
+        <Style TargetType="{x:Type ContentControl}">
+            <Style.Triggers>
+                <!-- TODO : 이거 줄일수 있을것 같은데 -->
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsOpen}" Value="true">
+                    
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+    
+    <ListView ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MainMenuUC}}, Path=ItemsSource}"
+                  SelectedItem="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MainMenuUC}}, Path=SelectedItem, Mode=TwoWay}">
+
+    </ListView>
 </UserControl>
+
+
+
+
+<!--<Path Data="M2,15.5L22,15.5 22,17.5 2,17.5 2,15.5z M2,10.5L22,10.5 22,12.5 2,12.5 2,10.5z M2,5.5L22,5.5 22,7.5 2,7.5 2,5.5z"
+              Grid.Row="100"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Stretch="Uniform"
+              Width="30"
+              Fill="Black" />-->
