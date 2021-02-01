@@ -11,8 +11,38 @@
         <vm:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
-        
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Your Value : " Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5" />
+        <TextBlock Grid.Row="0" Grid.Column="1" Margin="5">
+            <Run Text="&quot;" Foreground="Gray"
+            /><Run Text="{Binding MyValue}"
+            /><Run Text="&quot;" Foreground="Gray" />
+        </TextBlock>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Binded TextBox : " VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5" />
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding MyValue, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Set Value by Button : " VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"  />
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox Text="{Binding InputBox}" Margin="5" />
+            <Button Command="{Binding SetValue_Command}" Content="Set Value" Grid.Column="1" Padding="5 0" Margin="5" />
+        </Grid>
+            
+
+
         <!--<Button Content="Button1" Width="150" Height="100"/>-->
         <!--<ListBox>
             <ListBox.ItemContainerStyle>
@@ -40,6 +70,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>-->
-        
+
     </Grid>
 </Window>

@@ -32,24 +32,24 @@ namespace JustBindingTest.ViewModel
         }
 
         /// View에서 Command 바인딩을 할 경우 이 프로퍼티로 바인딩을 하여, 코드를 실행할 수 있습니다.
-        public ICommand Test1_Button { get; set; }
-        public ICommand Test2_Button { get; set; }
+        public ICommand Test1_Button_Click { get; set; }
+        public ICommand Test2_Button_Click { get; set; }
 
         public MainWindowViewModel()
         {
             // Command Binding Init
             /// ICommand 프로퍼티에 MvvmLight에서 제공한 함수를 이용하여 커맨드가 수행할 작업을 등록해줍니다.
-            Test1_Button = new RelayCommand(Test1_Button_Command);
-            Test2_Button = new RelayCommand(Test2_Button_Command);
+            Test1_Button_Click = new RelayCommand(Test1_Button_Click_Command);
+            Test2_Button_Click = new RelayCommand(Test2_Button_Click_Command);
         }
 
-        private void Test1_Button_Command()
+        private void Test1_Button_Click_Command()
         {
             // Command Binding to some working
             Text1 = Text1 + "(Changed in VM)";
             MessageBox.Show(Text1);
         }
-        private void Test2_Button_Command()
+        private void Test2_Button_Click_Command()
         {
             // Command Binding to some working
             Text2 = Text2 + "(Changed in VM)";
