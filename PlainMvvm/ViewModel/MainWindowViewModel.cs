@@ -16,14 +16,14 @@ namespace PlainMvvm.ViewModel
         public string MyValue
         {
             get => _myValue;
-            set { _myValue = value; OnPropertyChanged(nameof(_myValue)); }
+            set { _myValue = value; OnPropertyChanged(nameof(MyValue)); }
         }
 
         private string _inputBox;
         public string InputBox
         {
             get => _inputBox;
-            set { _inputBox = value; OnPropertyChanged(nameof(_inputBox)); }
+            set { _inputBox = value; OnPropertyChanged(nameof(InputBox)); }
         }
 
 
@@ -36,7 +36,7 @@ namespace PlainMvvm.ViewModel
 
         private void SetValue_Button_Click_Command()
         {
-            
+            MyValue = InputBox;
         }
 
 

@@ -10,6 +10,9 @@
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -19,17 +22,31 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Your Value : " Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5" />
+        <TextBlock Grid.Row="0" Grid.Column="0" 
+                   Text="Your Value : " 
+                   Foreground="Gray"
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Right" 
+                   Margin="5" />
         <TextBlock Grid.Row="0" Grid.Column="1" Margin="5">
             <Run Text="&quot;" Foreground="Gray"
             /><Run Text="{Binding MyValue}"
-            /><Run Text="&quot;" Foreground="Gray" />
+            /><Run Text="&quot;   &lt;-  Binded in ViewModel " Foreground="Gray" />
         </TextBlock>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Binded TextBox : " VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5" />
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding MyValue, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" 
+                   Text="Binded TextBox : " 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Right" 
+                   Margin="5" />
+        <!-- TargetNullValue를 설정하면 바인딩 대상값이 null로 초기화가 되어있지 않았을 때, 초기값을 설정합니다.
+             단, 이 경우 TargetNullValue로 인한 초기화로는 Binding이 발생하지 않습니다. -->
+        <TextBox Grid.Row="1" Grid.Column="1" 
+                 Text="{Binding MyValue, UpdateSourceTrigger=PropertyChanged, TargetNullValue='Change me by typing'}" 
+                 Margin="5"/>
 
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Set Value by Button : " VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"  />
         <Grid Grid.Row="2" Grid.Column="1">
@@ -37,14 +54,26 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
-            <TextBox Text="{Binding InputBox}" Margin="5" />
-            <Button Command="{Binding SetValue_Command}" Content="Set Value" Grid.Column="1" Padding="5 0" Margin="5" />
+            <!-- TODO Attached Property 를 사용해서 HintText Value생성해서 Style을 Hint에 바인딩 -->
+            <TextBox Text="{Binding InputBox, TargetNullValue='Button click to change value'}" Margin="5" />
+            <Button Command="{Binding SetValue_Button_Click}" Content="Set Value" Grid.Column="1" Padding="5 0" Margin="5" />
         </Grid>
-            
 
 
-        <!--<Button Content="Button1" Width="150" Height="100"/>-->
-        <!--<ListBox>
+
+
+
+    </Grid>
+</Window>
+
+
+
+
+
+
+
+<!-- List Binding Example -->
+<!--<ListBox>
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
@@ -71,5 +100,25 @@
             </ListBox.ItemTemplate>
         </ListBox>-->
 
-    </Grid>
-</Window>
+
+<!-- Button Hint Style Example -->
+<!--<Style x:Key="TextBoxHint" TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <Style.Resources>
+        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+            <VisualBrush.Visual>
+                <Label Content="Search" Foreground="LightGray" />
+            </VisualBrush.Visual>
+        </VisualBrush>
+    </Style.Resources>
+    <Style.Triggers>
+        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+        </Trigger>
+        <Trigger Property="Text" Value="{x:Null}">
+            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+        </Trigger>
+        <Trigger Property="IsKeyboardFocused" Value="True">
+            <Setter Property="Background" Value="White" />
+        </Trigger>
+    </Style.Triggers>
+</Style>-->
