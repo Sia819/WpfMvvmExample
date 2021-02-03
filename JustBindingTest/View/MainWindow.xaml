@@ -6,7 +6,7 @@
         xmlns:viewmodel="clr-namespace:JustBindingTest.ViewModel"
         xmlns:local="clr-namespace:JustBindingTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="250" Width="400">
+        Title="MainWindow" Height="320" Width="400">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel/>
     </Window.DataContext>
@@ -14,6 +14,10 @@
     <StackPanel>
         <!-- Tip : Run 사이에 띄어쓰기가 있으면 SpaceBar를 출력하기에 /> 를 다음줄에서 닫음. -->
         <!-- 당연하게도 IPropretyChanged를 적용하지 않은 변수로 바인딩을 했으므로, ViewModel에서 변경된 내용을 바인딩으로 받아올 수 없음. -->
+        <TextBlock Text="Property &quot;Text1&quot; doesn't use PropertyChanged event in ViewModel." 
+                   HorizontalAlignment="Center"
+                   Foreground="Green"
+                   Margin="5"/>
         <TextBlock Margin="5" > 
             <Run Text="Text1 in ViewModel - &quot;" Foreground="Gray" 
           /><Run Text="{Binding Text1, Mode=OneWay}"  
@@ -22,11 +26,16 @@
         <!-- UpdateSourceTrigger는 TextBox에서는 특별하게 기본적으로 FocusLost되면 바인딩이 되지만, 이를 프로퍼티 PropertyChanged로 설정시, 즉시 바인딩됩니다. -->
         <TextBox Text="{Binding Text1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue='Change This 1', FallbackValue='Cannot get value from ViewModel'}"
                  Margin="5"/>
-        <Button Command="{Binding Test1_Button}"
+        <Button Command="{Binding Test1_Button_Click}"
                 Content="Check Text" 
                 Margin="5"/>
 
         <Path Data="M0,0 1,0" Stroke="Black" StrokeThickness="1" Stretch="Uniform" Margin="12"/>
+
+        <TextBlock Text="Property &quot;Text2&quot; using PropertyChanged event&#x0a;supported by mvvmlight lib in ViewModel."
+                   HorizontalAlignment="Center"
+                   Foreground="Green"
+                   Margin="5"/>
 
         <TextBlock Margin="5" > 
             <Run Text="Text2 in ViewModel - &quot;" Foreground="Gray" 
@@ -35,7 +44,7 @@
         </TextBlock>
         <TextBox Text="{Binding Text2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue='Change This 2', FallbackValue='Cannot get value from ViewModel'}"
                  Margin="5"/>
-        <Button Command="{Binding Test2_Button}"
+        <Button Command="{Binding Test2_Button_Click}"
                 Content="Check Text" 
                 Margin="5"/>
     </StackPanel>
