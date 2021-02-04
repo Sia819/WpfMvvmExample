@@ -9,9 +9,12 @@ namespace MvvmExample.Common
         public ViewModelLocator()
         {
             SimpleIoc.Default.Register<MainWindowViewModel>();
-
+            SimpleIoc.Default.Register<Page1ViewModel>();
+            SimpleIoc.Default.Register<Page2ViewModel>();
+            SimpleIoc.Default.Register<Page3ViewModel>();
         }
 
         public MainWindowViewModel MainWindowDataContext { get => SimpleIoc.Default.GetInstance<MainWindowViewModel>(); }
     }
 }
+
