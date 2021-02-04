@@ -20,7 +20,7 @@
         </Storyboard>
         <Storyboard x:Key="EnlargeWidth">
             <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Width)"
-                             Storyboard.Target="{Binding ElementName=LeftFolderableMenu}"
+                             Storyboard.Target="{Binding ElementName=FolderableMenu}"
                              Duration="0:0:0.5"
                              To="250">
                 <DoubleAnimation.EasingFunction>
@@ -35,14 +35,19 @@
             <Style.Triggers>
                 <!-- TODO : 이거 줄일수 있을것 같은데 -->
                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsOpen}" Value="true">
-                    
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard Storyboard="{StaticResource EnlargeWidth}"></BeginStoryboard>
+                    </DataTrigger.EnterActions>
+                    <DataTrigger.ExitActions>
+                        <BeginStoryboard Storyboard="{StaticResource ShrinkWidth}"></BeginStoryboard>
+                    </DataTrigger.ExitActions>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
     </UserControl.Style>
     
     <ListView ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MainMenuUC}}, Path=ItemsSource}"
-                  SelectedItem="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MainMenuUC}}, Path=SelectedItem, Mode=TwoWay}">
+              SelectedItem="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MainMenuUC}}, Path=SelectedItem, Mode=TwoWay}">
 
     </ListView>
 </UserControl>

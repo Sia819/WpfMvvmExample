@@ -6,16 +6,32 @@
         xmlns:local="clr-namespace:MvvmExample.View"
         xmlns:vm="clr-namespace:MvvmExample.ViewModel"
         xmlns:uc="clr-namespace:MvvmExample.UC"
+        xmlns:model="clr-namespace:MvvmExample.Model"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        DataContext="{Binding MainWindowDataContext, Source={StaticResource Locator}}">
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <uc:MainMenuUC >
-            
+        <uc:MainMenuUC IsOpen="{Binding IsOpen}"
+                       ItemsSource="{Binding FolderMenuCollection}"
+                       SelectedItem="{Binding SelectedViewModel, Mode=TwoWay}">
+            <uc:MainMenuUC.Resources>
+                <DataTemplate DataType="{x:Type model:MainMenu}">
+                    <Grid Height="40">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ContentPresenter Grid.Column="0" Width="40"/>
+                        <TextBlock Grid.Column="1" Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </uc:MainMenuUC.Resources>
         </uc:MainMenuUC>
 
     </Grid>
