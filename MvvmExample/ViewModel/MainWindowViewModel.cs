@@ -10,9 +10,16 @@ namespace MvvmExample.ViewModel
     {
         private ObservableCollection<MainMenu> _folderMenuCollection;
         public ObservableCollection<MainMenu> FolderMenuCollection
-        { 
-            get =>
-                (_folderMenuCollection is not null) ? _folderMenuCollection : _folderMenuCollection = new ObservableCollection<MainMenu>();
+        {
+            //get => (_folderMenuCollection is not null) ? _folderMenuCollection : _folderMenuCollection = new ObservableCollection<MainMenu>();
+            get
+            {
+                if (_folderMenuCollection == null)
+                {
+                    _folderMenuCollection = new ObservableCollection<MainMenu>();
+                }
+                return _folderMenuCollection;
+            }
         }
 
         private MainMenu _selectedFolderMenuViewModel;
@@ -33,19 +40,21 @@ namespace MvvmExample.ViewModel
                                     Page2ViewModel page2ViewModel,
                                     Page3ViewModel page3ViewModel)
         {
-            FolderMenuCollection.Add(new MainMenu() { Name = "Page1", TargetViewModel = page1ViewModel });
+            var temp_Selected = new MainMenu() { Name = "Page1", TargetViewModel = page1ViewModel };
+            //FolderMenuCollection.Add(new MainMenu() { Name = "Page1", TargetViewModel = page1ViewModel });
+            FolderMenuCollection.Add(temp_Selected);
             FolderMenuCollection.Add(new MainMenu() { Name = "Page2", TargetViewModel = page2ViewModel });
             FolderMenuCollection.Add(new MainMenu() { Name = "Page3", TargetViewModel = page3ViewModel });
-            SelectedFolderMenuViewModel = FolderMenuCollection[0];
+            //SelectedFolderMenuViewModel = FolderMenuCollection[0];
+            SelectedFolderMenuViewModel = temp_Selected;
             IsFolderMenuOpen = false;
         }
 
         public ICommand MenuSwitch_Click { get => new RelayCommand(MenuSwitch_Click_Command); }
-        void MenuSwitch_Click_Command()
+        private void MenuSwitch_Click_Command()
         {
             IsFolderMenuOpen = !IsFolderMenuOpen;
         }
-
 
     }
 }

@@ -4,35 +4,59 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MvvmExample.View"
+        DataContext="{Binding Source={StaticResource Locator}, Path=MainWindowViewModel}"
         xmlns:vm="clr-namespace:MvvmExample.ViewModel"
+        xmlns:view="clr-namespace:MvvmExample.View"
         xmlns:uc="clr-namespace:MvvmExample.UC"
         xmlns:model="clr-namespace:MvvmExample.Model"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-        DataContext="{Binding MainWindowDataContext, Source={StaticResource Locator}}">
+        >
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-        <uc:MainMenuUC IsOpen="{Binding IsOpen}"
+        <Button Content="블랙매직" Command="{Binding MenuSwitch_Click}" Click="Button_Click"/>
+
+        <uc:MainMenuUC IsOpen="{Binding IsFolderMenuOpen}"
                        ItemsSource="{Binding FolderMenuCollection}"
-                       SelectedItem="{Binding SelectedViewModel, Mode=TwoWay}">
+                       SelectedItem="{Binding SelectedFolderMenuViewModel, Mode=TwoWay}" 
+                       Grid.Row="1"
+                       HorizontalAlignment="Left">
             <uc:MainMenuUC.Resources>
                 <DataTemplate DataType="{x:Type model:MainMenu}">
                     <Grid Height="40">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <ContentPresenter Grid.Column="0" Width="40"/>
                         <TextBlock Grid.Column="1" Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     </Grid>
                 </DataTemplate>
             </uc:MainMenuUC.Resources>
         </uc:MainMenuUC>
+
+
+        <!--<ContentPresenter Content="{Binding  }" Grid.Row="1" Grid.Column="1">
+            <ContentPresenter.Resources>
+
+                <DataTemplate DataType="{x:Type vm:Page1ViewModel}">
+                    <view:Page1/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type vm:Page2ViewModel}">
+                    <view:Page2/>
+                </DataTemplate>
+
+            </ContentPresenter.Resources>
+        </ContentPresenter>-->
 
     </Grid>
 </Window>

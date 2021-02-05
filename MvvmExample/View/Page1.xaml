@@ -9,6 +9,9 @@
       Title="Page1">
 
     <Grid>
-        
+        <StackPanel>
+            <TextBlock Text="Page1"/>
+            <TextBlock Text="{Binding Text}"/>
+        </StackPanel>
     </Grid>
 </Page>
