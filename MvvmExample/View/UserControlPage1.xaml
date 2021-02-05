@@ -10,6 +10,7 @@
         <StackPanel>
             <TextBlock Text="UCPage1"/>
             <TextBlock Text="{Binding Text}"/>
+           
         </StackPanel>
     </Grid>
 </UserControl>

@@ -44,10 +44,13 @@
 
         <Button Grid.Row="0" Grid.Column="0"
                 Command="{Binding MenuSwitch_Click}"
-                VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
-            <Image Source="pack://application:,,,/Image/menu_32px_black.png"/>
+                Style="{Binding Source={StaticResource MenuSwitch_Button_Style}}"
+                VerticalContentAlignment="Center" 
+                HorizontalContentAlignment="Left">
+            <Image Source="pack://application:,,,/Image/menu_32px_black.png" 
+                   Margin="5"/>
         </Button>
-        <!--Style="{Binding Source={StaticResource MenuSwitch_Button_Style}}"-->
+        <!---->
 
         <uc:MainMenuUC IsOpen="{Binding IsFolderMenuOpen}"
                        ItemsSource="{Binding FolderMenuCollection}"
@@ -58,11 +61,15 @@
                 <DataTemplate DataType="{x:Type model:MainMenu}">
                     <Grid Height="40">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Image Source="{Binding IconUri}" Width="30" Height="30"/>
-                        <TextBlock Grid.Column="1" Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" 
+                                   Text="{Binding Name}" 
+                                   HorizontalAlignment="Left" 
+                                   VerticalAlignment="Center"
+                                   Margin="5 0 0 0"/>
                     </Grid>
                 </DataTemplate>
             </uc:MainMenuUC.Resources>

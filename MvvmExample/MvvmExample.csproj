@@ -2,16 +2,26 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Image\" />
+    <None Remove="Image\menu_32px_black.png" />
+    <None Remove="Image\menu_32px_white.png" />
+    <None Remove="Image\page_26px_black.png" />
+    <None Remove="Image\page_26px_white.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MvvmLightStd10" Version="5.4.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Image\menu_32px_black.png" />
+    <Resource Include="Image\menu_32px_white.png" />
+    <Resource Include="Image\page_26px_black.png" />
+    <Resource Include="Image\page_26px_white.png" />
   </ItemGroup>
 
 </Project>
