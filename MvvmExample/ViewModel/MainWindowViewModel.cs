@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using MvvmExample.Model;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System;
 
 namespace MvvmExample.ViewModel
 {
@@ -22,11 +23,11 @@ namespace MvvmExample.ViewModel
             }
         }
 
-        private MainMenu _selectedFolderMenuViewModel;
-        public MainMenu SelectedFolderMenuViewModel
+        private MainMenu _folderMenuSelectedViewModel;
+        public MainMenu FolderMenuSelectedViewModel
         {
-            get => _selectedFolderMenuViewModel;
-            set => Set(ref _selectedFolderMenuViewModel, value);
+            get => _folderMenuSelectedViewModel;
+            set => Set(ref _folderMenuSelectedViewModel, value);
         }
 
         private bool _isFolderMenuOpen;
@@ -40,13 +41,13 @@ namespace MvvmExample.ViewModel
                                     Page2ViewModel page2ViewModel,
                                     Page3ViewModel page3ViewModel)
         {
-            var temp_Selected = new MainMenu() { Name = "Page1", TargetViewModel = page1ViewModel };
-            //FolderMenuCollection.Add(new MainMenu() { Name = "Page1", TargetViewModel = page1ViewModel });
+            var temp_Selected = new MainMenu() { IconUri = new Uri("pack://application:,,,/Image/page_26px_black.png"), Name = "Page1", TargetViewModel = page1ViewModel };
             FolderMenuCollection.Add(temp_Selected);
-            FolderMenuCollection.Add(new MainMenu() { Name = "Page2", TargetViewModel = page2ViewModel });
-            FolderMenuCollection.Add(new MainMenu() { Name = "Page3", TargetViewModel = page3ViewModel });
+            //FolderMenuCollection.Add(new MainMenu() { IconUri= new System.Uri("pack://Application:,,,/Image/page_26px_black.png", System.UriKind.Absolute), Name = "Page1", TargetViewModel = page1ViewModel });
+            FolderMenuCollection.Add(new MainMenu() { IconUri = new Uri("pack://application:,,,/Image/page_26px_black.png"), Name = "Page2", TargetViewModel = page2ViewModel });
+            FolderMenuCollection.Add(new MainMenu() { IconUri = new Uri("pack://application:,,,/Image/page_26px_black.png"), Name = "Page3", TargetViewModel = page3ViewModel });
             //SelectedFolderMenuViewModel = FolderMenuCollection[0];
-            SelectedFolderMenuViewModel = temp_Selected;
+            FolderMenuSelectedViewModel = temp_Selected;
             IsFolderMenuOpen = false;
         }
 

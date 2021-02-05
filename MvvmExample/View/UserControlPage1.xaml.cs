@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace MvvmExample.View
 {
     /// <summary>
-    /// Page2.xaml에 대한 상호 작용 논리
+    /// UserControlPage1.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class Page2 : Page
+    public partial class UserControlPage1 : UserControl
     {
-        public Page2()
+        public UserControlPage1()
         {
             InitializeComponent();
         }

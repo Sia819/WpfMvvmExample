@@ -3,15 +3,34 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MvvmExample.View"
-        DataContext="{Binding Source={StaticResource Locator}, Path=MainWindowViewModel}"
-        xmlns:vm="clr-namespace:MvvmExample.ViewModel"
         xmlns:view="clr-namespace:MvvmExample.View"
+        xmlns:vm="clr-namespace:MvvmExample.ViewModel"
         xmlns:uc="clr-namespace:MvvmExample.UC"
         xmlns:model="clr-namespace:MvvmExample.Model"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        >
+        DataContext="{Binding Source={StaticResource Locator}, Path=MainWindowViewModel}"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <!-- #region MenuSwitch_Button_Style -->
+        <Style x:Key="MenuSwitch_Button_Style" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" >
+                            <ContentPresenter Content="{TemplateBinding Content}" 
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- #endregion -->
+        
+    </Window.Resources>
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -23,11 +42,16 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Button Content="블랙매직" Command="{Binding MenuSwitch_Click}" Click="Button_Click"/>
+        <Button Grid.Row="0" Grid.Column="0"
+                Command="{Binding MenuSwitch_Click}"
+                VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
+            <Image Source="pack://application:,,,/Image/menu_32px_black.png"/>
+        </Button>
+        <!--Style="{Binding Source={StaticResource MenuSwitch_Button_Style}}"-->
 
         <uc:MainMenuUC IsOpen="{Binding IsFolderMenuOpen}"
                        ItemsSource="{Binding FolderMenuCollection}"
-                       SelectedItem="{Binding SelectedFolderMenuViewModel, Mode=TwoWay}" 
+                       SelectedItem="{Binding FolderMenuSelectedViewModel, Mode=TwoWay}" 
                        Grid.Row="1"
                        HorizontalAlignment="Left">
             <uc:MainMenuUC.Resources>
@@ -37,27 +61,45 @@
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
+                        <Image Source="{Binding IconUri}" Width="30" Height="30"/>
                         <TextBlock Grid.Column="1" Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     </Grid>
                 </DataTemplate>
             </uc:MainMenuUC.Resources>
         </uc:MainMenuUC>
 
-
-        <!--<ContentPresenter Content="{Binding  }" Grid.Row="1" Grid.Column="1">
+        <ContentPresenter Content="{Binding FolderMenuSelectedViewModel.TargetViewModel}" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
             <ContentPresenter.Resources>
-
                 <DataTemplate DataType="{x:Type vm:Page1ViewModel}">
-                    <view:Page1/>
+                    <view:UserControlPage1/>
                 </DataTemplate>
-
                 <DataTemplate DataType="{x:Type vm:Page2ViewModel}">
-                    <view:Page2/>
+                    <view:UserControlPage2/>
                 </DataTemplate>
-
+                <DataTemplate DataType="{x:Type vm:Page3ViewModel}">
+                    <view:UserControlPage3/>
+                </DataTemplate>
             </ContentPresenter.Resources>
-        </ContentPresenter>-->
+        </ContentPresenter>
+        <Path Data="M-11.5,11.79" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="-12,12,0,0" Stretch="Fill" Stroke="Black" VerticalAlignment="Top" Width="1"/>
 
     </Grid>
 </Window>
 
+
+
+
+<!-- #region HamburgerMenu_Path_Style -->
+<!--<Style x:Key="HamburgerMenu_Path_Style" TargetType="{x:Type Path}">
+    <Setter Property="Data" Value="M2,15.5L22,15.5 22,17.5 2,17.5 2,15.5z M2,10.5L22,10.5 22,12.5 2,12.5 2,10.5z M2,5.5L22,5.5 22,7.5 2,7.5 2,5.5z"/>
+    <Setter Property="Fill" Value="DarkGray"/>
+    <Setter Property="Height" Value="30"/>
+    <Setter Property="Stretch" Value="Fill"/>
+    <Setter Property="Stroke" Value="Blue"/>
+
+    <Setter Property="Width" Value="30"/>
+    <Setter Property="StrokeThickness" Value="0"/>
+    <Setter Property="Margin" Value="5"/>
+    <Setter Property="StrokeThickness" Value="0"/>
+</Style>-->
+<!-- #endregion -->

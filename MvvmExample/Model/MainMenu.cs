@@ -7,6 +7,7 @@ namespace MvvmExample.Model
 {
     public class MainMenu
     {
+        public Uri IconUri { get; set; }
         public string Name { get; set; }
         public ViewModelBase TargetViewModel { get; set; }
     }
