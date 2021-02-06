@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              Name="FoldableMenu"
              Width="40"
-             d:DesignHeight="400" d:DesignWidth="250">
+             d:DesignHeight="300" d:DesignWidth="50">
     <UserControl.Resources>
         <Storyboard x:Key="ShrinkWidth">
             <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Width)"
@@ -48,15 +48,21 @@
 
     <ListView ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MainMenuUC}}, Path=ItemsSource}"
               SelectedItem="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MainMenuUC}}, Path=SelectedItem, Mode=TwoWay}" 
-              Background="SkyBlue"
+              Background="#FFD6D2"
               BorderThickness="0"
               ScrollViewer.HorizontalScrollBarVisibility="Disabled">
         <ListView.ItemContainerStyle>
             <Style TargetType="{x:Type ListViewItem}">
                 <Style.Triggers>
-                    <Trigger Property="IsSelected" Value="true" >
-                        <Setter Property="Foreground" Value="Red" />
-                        <Setter Property="Background" Value="Blue" />
+                    <!-- If ListView item has selected, change selected item style -->
+                    <Trigger Property="IsSelected" Value="True" >
+                        <Setter Property="Foreground" Value="Black" />
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Background" Value="#FFE9E9" /> <!-- Light Beige Color -->
+                    </Trigger>
+                    <Trigger Property="IsSelected" Value="False" >
+                        <Setter Property="Foreground" Value="DarkGray" />
+                        <Setter Property="FontWeight" Value="Black"/>
                     </Trigger>
                 </Style.Triggers>
                 
@@ -86,11 +92,14 @@
 
                                 </Trigger>
                             </ControlTemplate.Triggers>
-                            <Border CornerRadius="2" 
-                                    SnapsToDevicePixels="True"  
-                                    BorderThickness="{TemplateBinding BorderThickness}"   
-                                    BorderBrush="{TemplateBinding BorderBrush}"   
+                            <Border SnapsToDevicePixels="True"
+                                    BorderThickness="0"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
                                     Background="{TemplateBinding Background}">
+                                    <!--
+                                    CornerRadius="2"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    -->
                                 <Border Name="InnerBorder" 
                                         CornerRadius="1" 
                                         BorderThickness="1">
@@ -110,7 +119,11 @@
 
     </ListView>
 </UserControl>
-
+<!--
+#FFE9E9 - 연한베이지
+#FFD6D2 - 일반베이지
+#FFC3AF - 진한베이지
+-->
 
 
 

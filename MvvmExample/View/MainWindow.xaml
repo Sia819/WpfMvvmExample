@@ -46,7 +46,8 @@
                 Command="{Binding MenuSwitch_Click}"
                 Style="{Binding Source={StaticResource MenuSwitch_Button_Style}}"
                 VerticalContentAlignment="Center" 
-                HorizontalContentAlignment="Left">
+                HorizontalContentAlignment="Left"
+                Background="#FFC3AF">
             <Image Source="pack://application:,,,/Image/menu_32px_black.png" 
                    Margin="5"/>
         </Button>
@@ -64,7 +65,9 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="{Binding IconUri}" Width="30" Height="30"/>
+                        <Image Source="{Binding IconUri}" 
+                               Width="30" Height="30"
+                               Margin="3 0 0 0"/>
                         <TextBlock Grid.Column="1" 
                                    Text="{Binding Name}" 
                                    HorizontalAlignment="Left" 
