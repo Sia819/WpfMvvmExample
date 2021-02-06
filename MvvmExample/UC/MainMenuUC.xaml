@@ -7,7 +7,8 @@
              mc:Ignorable="d" 
              Name="FoldableMenu"
              Width="40"
-             d:DesignHeight="300" d:DesignWidth="50">
+             d:DesignHeight="300" d:DesignWidth="40"
+             >
     <UserControl.Resources>
         <Storyboard x:Key="ShrinkWidth">
             <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Width)"
@@ -29,6 +30,24 @@
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
         </Storyboard>
+        <!-- #region MenuSwitch_Button_Style -->
+        <Style x:Key="MenuSwitch_Button_Style" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" >
+                            <ContentPresenter Content="{TemplateBinding Content}" 
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- #endregion -->
     </UserControl.Resources>
     <UserControl.Style>
         <Style TargetType="{x:Type UserControl}">
@@ -45,79 +64,94 @@
             </Style.Triggers>
         </Style>
     </UserControl.Style>
+    
+    <!-- UserControl Content Area -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-    <ListView ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MainMenuUC}}, Path=ItemsSource}"
-              SelectedItem="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MainMenuUC}}, Path=SelectedItem, Mode=TwoWay}" 
-              Background="#FFD6D2"
-              BorderThickness="0"
-              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-        <ListView.ItemContainerStyle>
-            <Style TargetType="{x:Type ListViewItem}">
-                <Style.Triggers>
-                    <!-- If ListView item has selected, change selected item style -->
-                    <Trigger Property="IsSelected" Value="True" >
-                        <Setter Property="Foreground" Value="Black" />
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="Background" Value="#FFE9E9" /> <!-- Light Beige Color -->
-                    </Trigger>
-                    <Trigger Property="IsSelected" Value="False" >
-                        <Setter Property="Foreground" Value="DarkGray" />
-                        <Setter Property="FontWeight" Value="Black"/>
-                    </Trigger>
-                </Style.Triggers>
+        <Button Grid.Row="0" Grid.Column="0"
+                Command="{Binding MenuSwitch_Click}"
+                Style="{Binding Source={StaticResource MenuSwitch_Button_Style}}"
+                VerticalContentAlignment="Center" 
+                HorizontalContentAlignment="Left"
+                Background="#FFC3AF">
+            <Image Source="pack://application:,,,/Image/menu_32px_black.png" 
+                   Margin="5"/>
+        </Button>
+
+        <ListView Grid.Row="1"
+                  ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MainMenuUC}}, Path=ItemsSource}"
+                  SelectedItem="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MainMenuUC}}, Path=SelectedItem, Mode=TwoWay}" 
+                  Background="#FFD6D2"
+                  BorderThickness="0"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemContainerStyle>
                 
-                <Style.Resources>
-                        <LinearGradientBrush x:Key="ListItemHoverFill" EndPoint="0,1" StartPoint="0,0">
-                            <GradientStop Color="#FFF1FBFF" Offset="0"/>
-                            <GradientStop Color="#FFD5F1FE" Offset="1"/>
-                        </LinearGradientBrush>
-                        <LinearGradientBrush x:Key="ListItemSelectedFill" EndPoint="0,1" StartPoint="0,0">
-                            <GradientStop Color="#FFF1FBFF" Offset="0"/>
-                            <GradientStop Color="#FFD5F1FE" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Style.Resources>
-                
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type ListViewItem}">
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="{StaticResource ListItemHoverFill}" />
-                                    <Setter Property="BorderBrush" Value="#FFCCF0FF" />
-                                </Trigger>
-
-                                <Trigger Property="IsSelected" Value="True">
-                                    <Setter Property="Background" Value="{StaticResource ListItemSelectedFill}" />
-                                    <Setter Property="BorderBrush" Value="#FF98DDFB" />
-
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                            <Border SnapsToDevicePixels="True"
-                                    BorderThickness="0"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    Background="{TemplateBinding Background}">
-                                    <!--
-                                    CornerRadius="2"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    -->
-                                <Border Name="InnerBorder" 
-                                        CornerRadius="1" 
-                                        BorderThickness="1">
-                                    <Grid Background="{TemplateBinding Background}" >
-                                        <ContentPresenter Content="{TemplateBinding Content}" 
-                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
-                                    </Grid>
+                <Style TargetType="{x:Type ListViewItem}">
+                    
+                    <Style.Triggers>
+                        <!-- If ListView item has selected, change selected item style -->
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Background" Value="#FFE9E9" /> <!-- Light Beige Color -->
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="False" >
+                            <Setter Property="Foreground" Value="DarkGray" />
+                            <Setter Property="FontWeight" Value="ExtraLight"/>
+                        </Trigger>
+                    </Style.Triggers>
+                    
+                    <Style.Resources>
+                            <LinearGradientBrush x:Key="ListItemHoverFill" EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="#FFF1FBFF" Offset="0"/>
+                                <GradientStop Color="#FFD5F1FE" Offset="1"/>
+                            </LinearGradientBrush>
+                            <LinearGradientBrush x:Key="ListItemSelectedFill" EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="#FFF1FBFF" Offset="0"/>
+                                <GradientStop Color="#FFD5F1FE" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Style.Resources>
+                    
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource ListItemHoverFill}" />
+                                        <Setter Property="BorderBrush" Value="#FFCCF0FF" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource ListItemSelectedFill}" />
+                                        <Setter Property="BorderBrush" Value="#FF98DDFB" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                                <Border SnapsToDevicePixels="True"
+                                        BorderThickness="0"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        Background="{TemplateBinding Background}">
+                                    <Border Name="InnerBorder" 
+                                            BorderThickness="0">
+                                        <Grid Background="{TemplateBinding Background}" >
+                                            <ContentPresenter Content="{TemplateBinding Content}" 
+                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                                        </Grid>
+                                    </Border>
                                 </Border>
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-        </ListView.ItemContainerStyle>
-
-
-    </ListView>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="BorderThickness" Value="0"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        
+    </Grid>
+    
 </UserControl>
 <!--
 #FFE9E9 - 연한베이지

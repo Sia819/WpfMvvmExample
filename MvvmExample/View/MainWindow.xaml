@@ -11,24 +11,6 @@
         DataContext="{Binding Source={StaticResource Locator}, Path=MainWindowViewModel}"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
-        <!-- #region MenuSwitch_Button_Style -->
-        <Style x:Key="MenuSwitch_Button_Style" TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="White" />
-            <Setter Property="Foreground" Value="Black" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}" >
-                            <ContentPresenter Content="{TemplateBinding Content}" 
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <!-- #endregion -->
         
     </Window.Resources>
     
@@ -37,27 +19,11 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="0"
-                Command="{Binding MenuSwitch_Click}"
-                Style="{Binding Source={StaticResource MenuSwitch_Button_Style}}"
-                VerticalContentAlignment="Center" 
-                HorizontalContentAlignment="Left"
-                Background="#FFC3AF">
-            <Image Source="pack://application:,,,/Image/menu_32px_black.png" 
-                   Margin="5"/>
-        </Button>
-        <!---->
-
+        <!-- Menu -->
         <uc:MainMenuUC IsOpen="{Binding IsFolderMenuOpen}"
                        ItemsSource="{Binding FolderMenuCollection}"
-                       SelectedItem="{Binding FolderMenuSelectedViewModel, Mode=TwoWay}" 
-                       Grid.Row="1"
-                       HorizontalAlignment="Left">
+                       SelectedItem="{Binding FolderMenuSelectedViewModel, Mode=TwoWay}">
             <uc:MainMenuUC.Resources>
                 <DataTemplate DataType="{x:Type model:MainMenu}">
                     <Grid Height="40">
@@ -77,8 +43,9 @@
                 </DataTemplate>
             </uc:MainMenuUC.Resources>
         </uc:MainMenuUC>
-
-        <ContentPresenter Content="{Binding FolderMenuSelectedViewModel.TargetViewModel}" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
+        
+        <!-- Selected Page Data -->
+        <ContentPresenter Content="{Binding FolderMenuSelectedViewModel.TargetViewModel}" Grid.Column="1">
             <ContentPresenter.Resources>
                 <DataTemplate DataType="{x:Type vm:Page1ViewModel}">
                     <view:UserControlPage1/>
@@ -95,21 +62,3 @@
 
     </Grid>
 </Window>
-
-
-
-
-<!-- #region HamburgerMenu_Path_Style -->
-<!--<Style x:Key="HamburgerMenu_Path_Style" TargetType="{x:Type Path}">
-    <Setter Property="Data" Value="M2,15.5L22,15.5 22,17.5 2,17.5 2,15.5z M2,10.5L22,10.5 22,12.5 2,12.5 2,10.5z M2,5.5L22,5.5 22,7.5 2,7.5 2,5.5z"/>
-    <Setter Property="Fill" Value="DarkGray"/>
-    <Setter Property="Height" Value="30"/>
-    <Setter Property="Stretch" Value="Fill"/>
-    <Setter Property="Stroke" Value="Blue"/>
-
-    <Setter Property="Width" Value="30"/>
-    <Setter Property="StrokeThickness" Value="0"/>
-    <Setter Property="Margin" Value="5"/>
-    <Setter Property="StrokeThickness" Value="0"/>
-</Style>-->
-<!-- #endregion -->
