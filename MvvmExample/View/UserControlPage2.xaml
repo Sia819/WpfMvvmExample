@@ -5,11 +5,50 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MvvmExample.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:Background="White"
+             d:DesignHeight="450" d:DesignWidth="800"
+             xmlns:vm="clr-namespace:MvvmExample.ViewModel"
+             d:DataContext="{d:DesignInstance Type=vm:Page2ViewModel, IsDesignTimeCreatable=True}"
+             >
+    <!---->
+    <!--d:DataContext="{x:Type vm:Page2ViewModel}"-->
+    <!--d:DataContext="{Binding Source={RelativeSource AncestorType={x:Type vm:Page2ViewModel}}}"-->
+
+    <!--d:DataContext="{Binding ???}"-->
     <Grid>
-        <StackPanel>
-            <TextBlock Text="UCPage2"/>
-            <TextBlock Text="{Binding Text}"/>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0" Grid.Row="0" 
+                   Text="[UCPage2]" FontSize="20"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="1" 
+                   Text="ViewModel - Text"/>
+        <TextBlock Grid.Column="1" Grid.Row="1"
+                   Text="{Binding Text}"/>
+        
+        <TextBlock Grid.Column="0" Grid.Row="2"
+                   Text="자기 자신에게 접근하여, FontSize의 값을 바인딩"/>
+        <TextBlock Grid.Column="1" Grid.Row="2"
+                   Text="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=FontSize}"
+                   FontSize="13"/>
+        
+        <!--<TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MainMenuUC}}}"/>-->
+        
+        <TextBlock Grid.Column="2" Grid.Row="3"
+                   xmlns:vm1="clr-namespace:MvvmExample.ViewModel"
+                   Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type vm1:Page2ViewModel}}, Path=Text}"/>
+
+
     </Grid>
 </UserControl>

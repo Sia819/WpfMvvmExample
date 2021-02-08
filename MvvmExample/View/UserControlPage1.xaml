@@ -5,21 +5,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MvvmExample.View"
              mc:Ignorable="d" 
+             Background="White"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel>
             <TextBlock Text="UCPage1"/>
             <TextBlock Text="{Binding Text}"/>
+            
             <ListView Margin="10">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
                         <Style.Resources>
                             <!-- Foreground for Selected ListViewItem -->
                             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" 
-                                 Color="Black"/>
+                                 Color="Red"/>
                             <!-- Background for Selected ListViewItem -->
                             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
-                                 Color="Transparent"/>
+                                 Color="Green"/>
                         </Style.Resources>
                     </Style>
                 </ListView.ItemContainerStyle>
@@ -27,7 +29,6 @@
                 <ListViewItem Content="2"/>
                 <ListViewItem Content="3"/>
             </ListView>
-
 
             <ListView Margin="10">
                 <ListView.ItemContainerStyle>
@@ -135,6 +136,31 @@
 
             </ListView>
 
+            <Grid>
+                <Grid.Resources>
+                    <Style x:Key="RowColorStyle" TargetType="ListViewItem">
+                        <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                        <Style.Triggers>
+                            <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
+                                <Setter Property="Background" Value="LightBlue" />
+                            </Trigger>
+                            <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
+                                <Setter Property="Background" Value="LightGray" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="Orange"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Resources>
+
+                <ListView ItemContainerStyle="{StaticResource RowColorStyle}" AlternationCount="2">
+                    <ListViewItem Content="123"/>
+                    <ListViewItem Content="456"/>
+                    <ListViewItem Content="789"/>
+                </ListView>
+
+            </Grid>
 
         </StackPanel>
     </Grid>
