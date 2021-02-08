@@ -89,7 +89,6 @@
                   BorderThickness="0"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemContainerStyle>
-                
                 <Style TargetType="{x:Type ListViewItem}">
                     
                     <Style.Triggers>
