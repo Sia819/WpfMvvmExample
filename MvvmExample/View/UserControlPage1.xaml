@@ -11,15 +11,15 @@
              d:DataContext="{d:DesignInstance Type=vm:Page1ViewModel, IsDesignTimeCreatable=True}">
     <StackPanel>
 
+
         <GroupBox Header="Text Binding"
                   BorderBrush="Gray"
                   Margin="10">
-            <Grid Margin="10" HorizontalAlignment="Left">
+            <Grid Margin="10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" MaxWidth="1000" />
-                    <!--https://stackoverflow.com/questions/39126009/bind-maxwidth-to-calculated-auto-value-->
+                    <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -28,42 +28,33 @@
                 <!--Grid.RowSpan="{Binding Path=RowDefinitions.Count, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"-->
                 <Path Grid.Column="1" Grid.Row="0" Grid.RowSpan="100"
                       Data="M0,0 0,1 1,1 1,0 z" 
-                      Fill="Gray"
-                      StrokeThickness="0"
-                      Stretch="Fill"
-                      HorizontalAlignment="Left" 
-                      VerticalAlignment="Stretch"
                       Width="1"
-                      UseLayoutRounding="True"
+                      Fill="Gray" StrokeThickness="0" Stretch="Fill" UseLayoutRounding="True"
+                      HorizontalAlignment="Left" VerticalAlignment="Stretch"
                       Margin="5 0"/>
 
                 <TextBlock Grid.Column="0" Grid.Row="0"
                            Text="Text is bound in ViewModel String Property"
-                           x:Name="TextBindingDescription1"
-                           HorizontalAlignment="Right"
                            TextWrapping="Wrap"
-                           VerticalAlignment="Center"
-                           Margin="10"/>
+                           HorizontalAlignment="Right" VerticalAlignment="Center"
+                           Margin="10 15"/>
 
                 <TextBlock Grid.Column="2" Grid.Row="0"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Center"
-                           Margin="10"
+                           HorizontalAlignment="Left" VerticalAlignment="Center"
+                           MinWidth="250"
+                           Margin="10 15" Padding="5"
                            Text="{Binding TextBinding_Text}"/>
 
                 <TextBlock Grid.Column="0" Grid.Row="1"
-                           x:Name="TextBindingDescription2"
                            Text="You can change the ViewModel Text Property by entering text."
                            TextWrapping="Wrap"
-                           HorizontalAlignment="Right"
-                           VerticalAlignment="Center"
-                           Margin="10"/>
+                           HorizontalAlignment="Right" VerticalAlignment="Center"
+                           Margin="10 15"/>
                 <TextBox Grid.Column="2" Grid.Row="1"
                          Text="{Binding TextBinding_Text, TargetNullValue='1', UpdateSourceTrigger=PropertyChanged}"
-                         HorizontalAlignment="Left"
-                         VerticalAlignment="Center"
-                         Padding="3"
-                         Margin="10" />
+                         HorizontalAlignment="Left" VerticalAlignment="Center"
+                         MinWidth="250"
+                         Margin="10 15" Padding="3" />
             </Grid>
         </GroupBox>
 
@@ -72,9 +63,9 @@
                   Margin="10">
             <Grid Margin="10" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" MaxWidth="100"/>
+                    <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -83,43 +74,32 @@
 
                 <Path Grid.Column="1" Grid.Row="0" Grid.RowSpan="100"
                       Data="M0,0 0,1 1,1 1,0 z" 
-                      Fill="Gray"
-                      StrokeThickness="0"
-                      Stretch="Fill"
-                      HorizontalAlignment="Left" 
-                      VerticalAlignment="Stretch"
                       Width="1"
-                      UseLayoutRounding="True"
-                      Margin="5 0"
-                      />
+                      Fill="Gray" StrokeThickness="0" Stretch="Fill" UseLayoutRounding="True"
+                      HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                      Margin="5 0" />
 
                 <TextBlock Grid.Column="0" Grid.Row="0"
-                           Text="Text to "
-                           HorizontalAlignment="Right"
+                           Text="Text input to change you can show button click to show from Messagebox."
                            TextWrapping="Wrap"
-                           VerticalAlignment="Center"
-                           Margin="10"/>
+                           HorizontalAlignment="Right" VerticalAlignment="Center"
+                           Margin="10 15" />
                 <TextBox Grid.Column="2" Grid.Row="0"
                          Text="{Binding CommandBinding_Text}"
-                         HorizontalAlignment="Left"
-                         VerticalAlignment="Center"
-                             MinWidth="200"
-                         Padding="3"
-                         Margin="10"/>
+                         HorizontalAlignment="Left" VerticalAlignment="Center"
+                         MinWidth="250"
+                         Margin="10 15" Padding="3" />
 
                 <TextBlock Grid.Column="0" Grid.Row="1"
-                           Text="Click Button"
+                           Text="Click-command is bound in ViewModel and through this, You can show bound Text form the MessageBox."
                            TextWrapping="Wrap"
-                           HorizontalAlignment="Right"
-                           VerticalAlignment="Center"
-                           Margin="10"/>
+                           HorizontalAlignment="Right" VerticalAlignment="Center"
+                           Margin="10 15" />
                 <Button Grid.Column="2" Grid.Row="1" Content="Click to show MessageBox"
                         Command="{Binding BtnCmd_Click}"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Padding="3"
-                        Margin="10"
-                        />
+                        HorizontalAlignment="Left" VerticalAlignment="Center"
+                        MinWidth="250"
+                        Margin="10 15" Padding="3" />
             </Grid>
             <!--<Rectangle Fill="Green"/>-->
         </GroupBox>
