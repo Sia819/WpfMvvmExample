@@ -5,182 +5,126 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MvvmExample.View"
              mc:Ignorable="d" 
-             Background="White"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <StackPanel>
-            <TextBlock Text="UCPage1"/>
-            <TextBlock Text="{Binding Text}"/>
-            
-            <ListView Margin="10">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="{x:Type ListViewItem}">
-                        <Style.Resources>
-                            <!-- Foreground for Selected ListViewItem -->
-                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" 
-                                 Color="Red"/>
-                            <!-- Background for Selected ListViewItem -->
-                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
-                                 Color="Green"/>
-                        </Style.Resources>
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListViewItem Content="1"/>
-                <ListViewItem Content="2"/>
-                <ListViewItem Content="3"/>
-            </ListView>
+             d:Height="450" d:Width="800"
+             d:Background="White"
+             xmlns:vm="clr-namespace:MvvmExample.ViewModel"
+             d:DataContext="{d:DesignInstance Type=vm:Page1ViewModel, IsDesignTimeCreatable=True}">
+    <StackPanel>
 
-            <ListView Margin="10">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="{x:Type ListViewItem}">
-                        <Style.Resources>
-                            <LinearGradientBrush x:Key="ListItemHoverFill" EndPoint="0,1" StartPoint="0,0">
-                                <GradientStop Color="#FFF1FBFF" Offset="0"/>
-                                <GradientStop Color="#FFD5F1FE" Offset="1"/>
-                            </LinearGradientBrush>
-                            <LinearGradientBrush x:Key="ListItemSelectedFill" EndPoint="0,1" StartPoint="0,0">
-                                <GradientStop Color="#FFF1FBFF" Offset="0"/>
-                                <GradientStop Color="#FFD5F1FE" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Style.Resources>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="{StaticResource ListItemHoverFill}" />
-                                            <Setter Property="BorderBrush" Value="#FFCCF0FF" />
-                                            <!--<Setter TargetName="UpperHighlight" Property="Visibility" Value="Visible" />-->
-                                        </Trigger>
+        <GroupBox Header="Text Binding"
+                  BorderBrush="Gray"
+                  Margin="10">
+            <Grid Margin="10" HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" MaxWidth="1000" />
+                    <!--https://stackoverflow.com/questions/39126009/bind-maxwidth-to-calculated-auto-value-->
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--Grid.RowSpan="{Binding Path=RowDefinitions.Count, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"-->
+                <Path Grid.Column="1" Grid.Row="0" Grid.RowSpan="100"
+                      Data="M0,0 0,1 1,1 1,0 z" 
+                      Fill="Gray"
+                      StrokeThickness="0"
+                      Stretch="Fill"
+                      HorizontalAlignment="Left" 
+                      VerticalAlignment="Stretch"
+                      Width="1"
+                      UseLayoutRounding="True"
+                      Margin="5 0"/>
 
-                                        <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Background" Value="{StaticResource ListItemSelectedFill}" />
-                                            <Setter Property="BorderBrush" Value="#FF98DDFB" />
-                                            <!--<Setter TargetName="InnerBorder" Property="BorderBrush" Value="#80FFFFFF" />-->
-                                            <!--<Setter TargetName="UpperHighlight" Property="Visibility" Value="Visible" />
-                                            <Setter TargetName="UpperHighlight" Property="Fill" Value="#40FFFFFF" />-->
-                                        </Trigger>
-                                        
-                                        <!-- If You need MultiLine Select(?) -->
-                                        <!--
-                                        <MultiTrigger>
-                                            <MultiTrigger.Conditions>
-                                                <Condition Property="IsSelected" Value="True" />
-                                                <Condition Property="Selector.IsSelectionActive" Value="False" />
-                                            </MultiTrigger.Conditions>
-                                            <Setter Property="Background" Value="{StaticResource ListItemSelectedInactiveFill}" />
-                                            <Setter Property="BorderBrush" Value="#FFCFCFCF" />
-                                        </MultiTrigger>
-                                        <MultiTrigger>
-                                            <MultiTrigger.Conditions>
-                                                <Condition Property="IsSelected" Value="True" />
-                                                <Condition Property="IsMouseOver" Value="True" />
-                                            </MultiTrigger.Conditions>
-                                            <Setter Property="Background" Value="{StaticResource ListItemSelectedHoverFill}" />
-                                            <Setter Property="BorderBrush" Value="#FF98DDFB" />
-                                        </MultiTrigger>
-                                        <Trigger Property="IsEnabled" Value="False">
-                                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                                        </Trigger>
-                                        -->
-                                    </ControlTemplate.Triggers>
-                                    
-                                    
-                                    
-                                    <Border CornerRadius="2" SnapsToDevicePixels="True"  
-                                            BorderThickness="{TemplateBinding BorderThickness}"   
-                                            BorderBrush="{TemplateBinding BorderBrush}"   
-                                            Background="{TemplateBinding Background}">
-                                        <Border Name="InnerBorder" 
-                                                CornerRadius="1" 
-                                                BorderThickness="1">
-                                            <Grid Background="{TemplateBinding Background}" >
-                                                <ContentPresenter Content="{TemplateBinding Content}" 
-                                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
-                                                <!--<Rectangle Name="UpperHighlight" 
-                                                       Visibility="Collapsed" 
-                                                       Fill="#75FFFFFF"
-                                                       Height="10"/>-->
-                                            </Grid>
-                                            <!--<Grid Height="25">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition MaxHeight="11" />
-                                                    <RowDefinition />
-                                                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0"
+                           Text="Text is bound in ViewModel String Property"
+                           x:Name="TextBindingDescription1"
+                           HorizontalAlignment="Right"
+                           TextWrapping="Wrap"
+                           VerticalAlignment="Center"
+                           Margin="10"/>
 
-                                                <Rectangle Name="UpperHighlight" 
-                                                           Visibility="Collapsed" 
-                                                           Fill="#75FFFFFF"
-                                                           Height="10"/>
-                                                <GridViewRowPresenter Grid.RowSpan="2"   
-                                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"   
-                                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                                            </Grid>-->
-                                        </Border>
-                                    </Border>
-                                    
-                                    
-                                        
-                                        
-                                    
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ListView.ItemContainerStyle>
+                <TextBlock Grid.Column="2" Grid.Row="0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="10"
+                           Text="{Binding TextBinding_Text}"/>
 
-                <ListViewItem Content="1"/>
-                <ListViewItem Content="2"/>
-                <ListViewItem Content="3"/>
-
-            </ListView>
-
-            <Grid>
-                <Grid.Resources>
-                    <Style x:Key="RowColorStyle" TargetType="ListViewItem">
-                        <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
-                        <Style.Triggers>
-                            <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
-                                <Setter Property="Background" Value="LightBlue" />
-                            </Trigger>
-                            <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
-                                <Setter Property="Background" Value="LightGray" />
-                            </Trigger>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="Orange"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Grid.Resources>
-
-                <ListView ItemContainerStyle="{StaticResource RowColorStyle}" AlternationCount="2">
-                    <ListViewItem Content="123"/>
-                    <ListViewItem Content="456"/>
-                    <ListViewItem Content="789"/>
-                </ListView>
-
+                <TextBlock Grid.Column="0" Grid.Row="1"
+                           x:Name="TextBindingDescription2"
+                           Text="You can change the ViewModel Text Property by entering text."
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Margin="10"/>
+                <TextBox Grid.Column="2" Grid.Row="1"
+                         Text="{Binding TextBinding_Text, TargetNullValue='1', UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Padding="3"
+                         Margin="10" />
             </Grid>
+        </GroupBox>
 
-        </StackPanel>
-    </Grid>
+        <GroupBox Header="Button Command Binding"
+                  BorderBrush="Gray"
+                  Margin="10">
+            <Grid Margin="10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" MaxWidth="100"/>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Path Grid.Column="1" Grid.Row="0" Grid.RowSpan="100"
+                      Data="M0,0 0,1 1,1 1,0 z" 
+                      Fill="Gray"
+                      StrokeThickness="0"
+                      Stretch="Fill"
+                      HorizontalAlignment="Left" 
+                      VerticalAlignment="Stretch"
+                      Width="1"
+                      UseLayoutRounding="True"
+                      Margin="5 0"
+                      />
+
+                <TextBlock Grid.Column="0" Grid.Row="0"
+                           Text="Text to "
+                           HorizontalAlignment="Right"
+                           TextWrapping="Wrap"
+                           VerticalAlignment="Center"
+                           Margin="10"/>
+                <TextBox Grid.Column="2" Grid.Row="0"
+                         Text="{Binding CommandBinding_Text}"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                             MinWidth="200"
+                         Padding="3"
+                         Margin="10"/>
+
+                <TextBlock Grid.Column="0" Grid.Row="1"
+                           Text="Click Button"
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Margin="10"/>
+                <Button Grid.Column="2" Grid.Row="1" Content="Click to show MessageBox"
+                        Command="{Binding BtnCmd_Click}"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Padding="3"
+                        Margin="10"
+                        />
+            </Grid>
+            <!--<Rectangle Fill="Green"/>-->
+        </GroupBox>
+
+        
+
+    </StackPanel>
 </UserControl>
-
-    
-    
-<!-- Hamburger Menu Path Example -->
-
-<!-- #region HamburgerMenu_Path_Style -->
-<!--<Style x:Key="HamburgerMenu_Path_Style" TargetType="{x:Type Path}">
-    <Setter Property="Data" Value="M2,15.5L22,15.5 22,17.5 2,17.5 2,15.5z M2,10.5L22,10.5 22,12.5 2,12.5 2,10.5z M2,5.5L22,5.5 22,7.5 2,7.5 2,5.5z"/>
-    <Setter Property="Fill" Value="DarkGray"/>
-    <Setter Property="Height" Value="30"/>
-    <Setter Property="Stretch" Value="Fill"/>
-    <Setter Property="Stroke" Value="Blue"/>
-
-    <Setter Property="Width" Value="30"/>
-    <Setter Property="StrokeThickness" Value="0"/>
-    <Setter Property="Margin" Value="5"/>
-    <Setter Property="StrokeThickness" Value="0"/>
-</Style>-->
-<!-- #endregion -->

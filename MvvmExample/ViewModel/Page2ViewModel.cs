@@ -1,8 +1,6 @@
 ﻿namespace MvvmExample.ViewModel
 {
     using GalaSoft.MvvmLight;
-    using System.Collections.ObjectModel;
-    using System.Windows;
 
     public class Page2ViewModel : ViewModelBase
     {
