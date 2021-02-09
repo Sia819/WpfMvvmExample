@@ -25,8 +25,9 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <!--Grid.RowSpan="{Binding Path=RowDefinitions.Count, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"-->
-                <Path Grid.Column="1" Grid.Row="0" Grid.RowSpan="100"
+
+                <Path Grid.Column="1" Grid.Row="0" Grid.RowSpan="{Binding Path=RowDefinitions.Count, 
+                            RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
                       Data="M0,0 0,1 1,1 1,0 z" 
                       Width="1"
                       Fill="Gray" StrokeThickness="0" Stretch="Fill" UseLayoutRounding="True"
@@ -72,12 +73,13 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Path Grid.Column="1" Grid.Row="0" Grid.RowSpan="100"
+                <Path Grid.Column="1" Grid.Row="0" Grid.RowSpan="{Binding Path=RowDefinitions.Count, 
+                            RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
                       Data="M0,0 0,1 1,1 1,0 z" 
                       Width="1"
                       Fill="Gray" StrokeThickness="0" Stretch="Fill" UseLayoutRounding="True"
                       HorizontalAlignment="Left" VerticalAlignment="Stretch"
-                      Margin="5 0" />
+                      Margin="5 0"/>
 
                 <TextBlock Grid.Column="0" Grid.Row="0"
                            Text="Text input to change you can show button click to show from Messagebox."
@@ -101,10 +103,7 @@
                         MinWidth="250"
                         Margin="10 15" Padding="3" />
             </Grid>
-            <!--<Rectangle Fill="Green"/>-->
         </GroupBox>
-
-        
 
     </StackPanel>
 </UserControl>
