@@ -33,9 +33,12 @@ namespace MvvmExample.ViewModel
                                     Page2ViewModel page2ViewModel,
                                     Page3ViewModel page3ViewModel)
         {
-            FolderMenuCollection.Add(new MainMenu() { IconUri = new Uri("pack://application:,,,/Image/page_26px_black.png", UriKind.RelativeOrAbsolute), Name = "Page1", TargetViewModel = page1ViewModel });
-            FolderMenuCollection.Add(new MainMenu() { IconUri = new Uri("pack://application:,,,/Image/page_26px_black.png", UriKind.RelativeOrAbsolute), Name = "Page2", TargetViewModel = page2ViewModel });
-            FolderMenuCollection.Add(new MainMenu() { IconUri = new Uri("pack://application:,,,/Image/page_26px_black.png", UriKind.RelativeOrAbsolute), Name = "Page3", TargetViewModel = page3ViewModel });
+            FolderMenuCollection.Add(new MainMenu() { IconUri = new Uri("pack://application:,,,/Image/page_26px_black.png", UriKind.RelativeOrAbsolute), 
+                                                        Name = "Page1", TargetViewModel = page1ViewModel });
+            FolderMenuCollection.Add(new MainMenu() { IconUri = new Uri("pack://application:,,,/Image/page_26px_black.png", UriKind.RelativeOrAbsolute), 
+                                                        Name = "Page2", TargetViewModel = page2ViewModel });
+            FolderMenuCollection.Add(new MainMenu() { IconUri = new Uri("pack://application:,,,/Image/page_26px_black.png", UriKind.RelativeOrAbsolute), 
+                                                        Name = "Page3", TargetViewModel = page3ViewModel });
             FolderMenuSelectedViewModel = FolderMenuCollection[0];
             IsFolderMenuOpen = false;
         }

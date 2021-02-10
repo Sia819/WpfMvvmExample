@@ -9,7 +9,7 @@
         xmlns:model="clr-namespace:MvvmExample.Model"
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource Locator}, Path=MainWindowViewModel}"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="650" Width="800">
     <Window.Resources>
         
     </Window.Resources>

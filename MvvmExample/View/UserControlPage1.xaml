@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MvvmExample.View"
              mc:Ignorable="d" 
-             d:Height="450" d:Width="800"
+             d:Height="600" d:Width="800"
              d:Background="White"
              xmlns:vm="clr-namespace:MvvmExample.ViewModel"
              d:DataContext="{d:DesignInstance Type=vm:Page1ViewModel, IsDesignTimeCreatable=True}">
