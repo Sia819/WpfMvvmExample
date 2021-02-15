@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvvmExample", "MvvmExample\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlainMvvm", "PlainMvvm\PlainMvvm.csproj", "{17F49364-7243-4A96-8441-FF23461C8C10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI_Tutorial", "UI_Tutorial\UI_Tutorial.csproj", "{84ED7F52-2E4E-456C-8597-399D2BE66499}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI_Tutorial", "UI_Tutorial\UI_Tutorial.csproj", "{84ED7F52-2E4E-456C-8597-399D2BE66499}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugOnly", "DebugOnly\DebugOnly.csproj", "{D1E2421F-5D4A-45A3-B286-5618D689DC9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{84ED7F52-2E4E-456C-8597-399D2BE66499}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84ED7F52-2E4E-456C-8597-399D2BE66499}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84ED7F52-2E4E-456C-8597-399D2BE66499}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1E2421F-5D4A-45A3-B286-5618D689DC9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1E2421F-5D4A-45A3-B286-5618D689DC9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1E2421F-5D4A-45A3-B286-5618D689DC9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1E2421F-5D4A-45A3-B286-5618D689DC9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

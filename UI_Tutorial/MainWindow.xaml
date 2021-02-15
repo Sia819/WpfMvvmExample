@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:UI_Tutorial"
         mc:Ignorable="d"
         Title="Window Launcher" Height="450" Width="300">
+
+
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
@@ -25,7 +27,7 @@
                 <Style TargetType="Rectangle">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsLaunch}" Value="True" >
-                            <Setter Property="Visibility" Value="Visible"/> 
+                            <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding IsLaunch}" Value="False" >
                             <Setter Property="Visibility" Value="Hidden"/>

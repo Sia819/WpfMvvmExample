@@ -1,7 +1,4 @@
 ﻿using GalaSoft.MvvmLight;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 
 namespace UI_Tutorial.Chrome
@@ -33,6 +30,7 @@ namespace UI_Tutorial.Chrome
         }
         public CornerRadius WindowCornerRadius { get => new CornerRadius(WindowRadius); }
         public int TitleHeight { get; set; } = 42;
+        public GridLength TitleHeightGridLength { get => new GridLength(TitleHeight); }
 
 
         #endregion
