@@ -35,7 +35,8 @@
         public ICommand Ex1ListRemove_Command { get => _ex1ListRemove_Command ??= new RelayCommand(Ex1ListRemove); }
         private void Ex1ListRemove()
         {
-            Ex1ListCollection.RemoveAt(Ex1ListSelectedIndex);
+            if (Ex1ListSelectedIndex >= 0)
+                Ex1ListCollection.RemoveAt(Ex1ListSelectedIndex);
         }
 
         private ICommand _ex1ListMoveUp_Command;
