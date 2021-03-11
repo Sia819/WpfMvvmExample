@@ -10,9 +10,12 @@
                 <ResourceDictionary Source="Styles/Buttons.xaml" />
                 <ResourceDictionary Source="Styles/Colors.xaml" />
                 <ResourceDictionary Source="Styles/Fonts.xaml" />
+                <ResourceDictionary Source="Styles/Path.xaml" />
+                <ResourceDictionary Source="Styles/TestStyle.xaml" />
                 <ResourceDictionary Source="Styles/Texts.xaml" />
-                <ResourceDictionary Source="Styles/Windows.xaml" />
                 <ResourceDictionary Source="Styles/WindowChromeStyle.xaml" />
+                <ResourceDictionary Source="Styles/Windows.xaml" />
+                
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
