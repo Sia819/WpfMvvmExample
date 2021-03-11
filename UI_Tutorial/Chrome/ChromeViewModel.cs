@@ -1,5 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using System;
+using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Input;
 
 namespace UI_Tutorial.Chrome
 {
@@ -10,33 +14,96 @@ namespace UI_Tutorial.Chrome
         private Window _window;
         private int _outerMarginSize = 10;
         private int _windowRadius = 10;
+        private ICommand _minimizeCommand;
+        private ICommand _maximizeCommand;
+        private ICommand _closeCommand;
+        private ICommand _menuCommand;
 
         #endregion
 
         #region Public Properties
 
+        public double WindowMinimumWidth { get; set; } = 400;
+
+        public double WindowMinimumHeight { get; set; } = 400;
+
+        public WindowState WindowWindowState { get; set; }
+
         public int ResizeBorder { get; set; } = 6;
+
         public Thickness ResizeBorderThickness { get => new Thickness(ResizeBorder + OuterMarginSize); }
+
         public int OuterMarginSize
         {
             get => (_window.WindowState == WindowState.Maximized) ? 0 : _outerMarginSize;
             set => Set(ref _outerMarginSize, value);
         }
+
         public Thickness OuterMarginSizeThickness { get => new Thickness(OuterMarginSize); }
+
         public int WindowRadius
         {
             get => (_window.WindowState == WindowState.Maximized) ? 0 : _windowRadius;
             set => Set(ref _windowRadius, value);
         }
+
         public CornerRadius WindowCornerRadius { get => new CornerRadius(WindowRadius); }
-        public int TitleHeight { get; set; } = 42;
-        public GridLength TitleHeightGridLength { get => new GridLength(TitleHeight); }
+
+        public int TitleHeight { get; set; } = 30;
+
+        public GridLength TitleHeightGridLength { get => new GridLength(TitleHeight + ResizeBorder); }
+
 
 
         #endregion
 
+        #region Command
 
+        /// <summary>
+        /// The command to minimize the window.
+        /// </summary>
+        public ICommand MinimizeCommand
+        {
+            get => _minimizeCommand ??= new RelayCommand<Window>((obj) => MinimizeFunc(_window));
+            set => _minimizeCommand = value;
+        }
+        /// <summary>
+        /// The command to maximize the window.
+        /// </summary>
+        public ICommand MaximizeCommand
+        {
+            get => _maximizeCommand ??= new RelayCommand<Window>((obj) => MaximizeFunc(_window));
+            set => _maximizeCommand = value;
+        }
+        /// <summary>
+        /// The command to close the window.
+        /// </summary>
+        public ICommand CloseCommand
+        {
+            get => _closeCommand ??= new RelayCommand<Window>((obj) => CloseFunc(_window));
+            set => _closeCommand = value;
+        }
+        /// <summary>
+        /// The command to show the window system menu.
+        /// </summary>
+        public ICommand MenuCommand
+        {
+            get => _menuCommand ??= new RelayCommand<Window>((obj) => MenuFunc(_window));
+            set => _menuCommand = value;
+        }
 
+        #endregion
+
+        #region Private Function
+
+        private void MinimizeFunc(Window window) => window.WindowState = WindowState.Minimized;
+        private void MaximizeFunc(Window window) => window.WindowState ^= WindowState.Maximized;
+        private void CloseFunc(Window window) => window.Close();
+        private void MenuFunc(Window window) => SystemCommands.ShowSystemMenu(window, window.PointToScreen(GetMousePosition(window)));
+
+        #endregion
+
+        #region Constructor
 
         public ChromeViewModel(Window window)
         {
@@ -50,5 +117,21 @@ namespace UI_Tutorial.Chrome
                 RaisePropertyChanged(nameof(WindowCornerRadius));
             };
         }
+
+        #endregion
+
+        #region Public Function
+
+        /// <summary>
+        /// Gets the current mouse position on the screen
+        /// </summary>
+        /// <returns></returns>
+        private Point GetMousePosition(Window window)
+        {
+            var position = Mouse.GetPosition(window);
+            return new Point(position.X , position.Y);
+        }
+
+        #endregion
     }
 }
