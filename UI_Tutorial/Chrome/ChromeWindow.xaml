@@ -9,48 +9,14 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         x:Name="AppWindow"
-        Title="ChromeWindow" Height="450" Width="800">
-   
-    <Window.Resources>
-        <Style TargetType="{x:Type local:ChromeWindow}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Window}">
-                        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=10}">
-                            <Grid>
-                                <!-- Window border and dropshadow -->
-                                <Border CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}"
-                                        Background="{StaticResource ForegroundLightBrush}">
-                                    <Border.Effect>
-                                        <DropShadowEffect ShadowDepth="0" Opacity="0.2" />
-                                    </Border.Effect>
-                                </Border>
-                                <!-- Window content-->
-
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <!-- Title Bar -->
-                                        <RowDefinition Height="{Binding TitleHeightGridLength, FallbackValue=42}" />
-                                        <!-- Drop shadow-->
-                                        <RowDefinition Height="Auto" />
-                                        <!-- Window content -->
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    
-                                    <!-- Title Bar-->
-                                    <Grid Background="Red" Grid.Column="0" Panel.ZIndex="1">
-                                        
-                                    </Grid>
-                                </Grid>
-                                
-                            </Grid>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Resources>
-        
+        Title="ChromeWindow" 
+        Height="450" 
+        Width="800"
+        MinWidth="{Binding WindowMinimumWidth}"
+        MinHeight="{Binding WindowMinimumHeight}"
+        WindowState="{Binding WindowWindowState}"
+        Template="{StaticResource DefaultWindowChrome}">
+    
     <WindowChrome.WindowChrome>
         <WindowChrome 
             ResizeBorderThickness="{Binding ResizeBorderThickness}" 
@@ -60,5 +26,13 @@
             />
     </WindowChrome.WindowChrome>
 
-    <Grid Background="Red"></Grid>
+    <Grid Background="Gray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Content="test" Margin="50" />
+        <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+    </Grid>
 </Window>
