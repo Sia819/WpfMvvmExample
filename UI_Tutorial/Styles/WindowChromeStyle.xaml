@@ -1,0 +1,79 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:UI_Tutorial">
+
+    <ControlTemplate x:Key="DefaultWindowChrome" TargetType="Window">
+        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=10}">
+            <Grid>
+                <!-- Window border and dropshadow -->
+                <Border CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}"
+                                        Background="{StaticResource ForegroundLightBrush}">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="0" Opacity="0.2" />
+                    </Border.Effect>
+                </Border>
+                <!-- Window content-->
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <!-- Title Bar -->
+                        <RowDefinition Height="{Binding TitleHeightGridLength, FallbackValue=30}" />
+                        <!-- Drop shadow-->
+                        <RowDefinition Height="Auto" />
+                        <!-- Window content -->
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Title Bar-->
+                    <Grid Background="White" Grid.Column="0" Panel.ZIndex="1">
+                        <Grid.ColumnDefinitions>
+                            <!-- Program Icon -->
+                            <ColumnDefinition Width="Auto" />
+                            <!-- Title Bar -->
+                            <ColumnDefinition Width="*" />
+                            <!-- Title Button -->
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <!-- Icon -->
+                        <Button Command="{Binding MenuCommand}" 
+                                Style="{StaticResource SystemIconButton}">
+                            <Image Source="pack://application:,,,/Images/hamburger.png"/>
+                        </Button>
+                        
+                        <!-- Title -->
+                        <Viewbox Grid.Column="1" Margin="0" Stretch="Uniform">
+                            <TextBlock Text="{TemplateBinding Title}"/>
+                        </Viewbox>
+                        
+                        <!-- TitleBar Buttons -->
+                        <StackPanel Grid.Column="2" Orientation="Horizontal">
+                            <Button Command="{Binding MinimizeCommand}"
+                                    Style="{StaticResource WindowControlButton}"
+                                    Height="29" Width="45">
+                                <Path Style="{StaticResource Minimize_Path_Style}" />
+                            </Button>
+                            <Button Command="{Binding MaximizeCommand}"
+                                    Style="{StaticResource WindowControlButton}"
+                                    Height="29" Width="45">
+                                <Path Style="{StaticResource Maximize_Path_Style}" />
+                            </Button>
+                            <Button Command="{Binding CloseCommand}"
+                                    Style="{StaticResource WindowControl_Close}"
+                                    Height="29" Width="45">
+                                <Path Style="{StaticResource Close_Path_Style}" />
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                    <!-- Window Content -->
+                    <Border Grid.Row="2" Padding="{Binding InnerContentPadding}">
+                        <ContentPresenter Content="{TemplateBinding Content}" />
+                    </Border>
+                </Grid>
+
+            </Grid>
+        </Border>
+    </ControlTemplate>
+   
+
+</ResourceDictionary>
