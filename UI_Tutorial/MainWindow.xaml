@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:UI_Tutorial"
         mc:Ignorable="d"
         Title="Window Launcher" Height="450" Width="300"
-        Background="MediumAquamarine">
+        Background="MediumAquamarine"
+        Icon="pack://application:,,,/Images/hamburger.png">
 
 
     <Window.DataContext>

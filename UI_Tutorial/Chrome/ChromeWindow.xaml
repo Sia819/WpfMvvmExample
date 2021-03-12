@@ -16,23 +16,17 @@
         MinHeight="{Binding WindowMinimumHeight}"
         WindowState="{Binding WindowWindowState}"
         Template="{StaticResource DefaultWindowChrome}">
-    
     <WindowChrome.WindowChrome>
         <WindowChrome 
-            ResizeBorderThickness="{Binding ResizeBorderThickness}" 
+            ResizeBorderThickness="{Binding ResizeBorderThickness}"
             CaptionHeight="{Binding TitleHeight}"
-            CornerRadius="0"
+            CornerRadius="{Binding WindowRadius}"
             GlassFrameThickness="0"
             />
     </WindowChrome.WindowChrome>
 
-    <Grid Background="Gray">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+    <Grid Background="WhiteSmoke">
         <Button Content="test" Margin="50" />
-        <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
     </Grid>
 </Window>

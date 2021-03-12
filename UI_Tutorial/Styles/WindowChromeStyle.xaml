@@ -3,15 +3,16 @@
                     xmlns:local="clr-namespace:UI_Tutorial">
 
     <ControlTemplate x:Key="DefaultWindowChrome" TargetType="Window">
-        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=10}">
+        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=1}"
+                Background="#0079CB">
             <Grid>
                 <!-- Window border and dropshadow -->
-                <Border CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}"
+                <!--<Border CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}"
                                         Background="{StaticResource ForegroundLightBrush}">
                     <Border.Effect>
                         <DropShadowEffect ShadowDepth="0" Opacity="0.2" />
                     </Border.Effect>
-                </Border>
+                </Border>-->
                 <!-- Window content-->
 
                 <Grid>
@@ -37,24 +38,31 @@
                         
                         <!-- Icon -->
                         <Button Command="{Binding MenuCommand}" 
-                                Style="{StaticResource SystemIconButton}">
-                            <Image Source="pack://application:,,,/Images/hamburger.png"/>
+                                Style="{StaticResource SystemIconButton}"
+                                UseLayoutRounding="True">
+                            <Image Source="pack://application:,,,/Images/hamburger.png"
+                                   UseLayoutRounding="True"
+                                   Height="16"
+                                   Width="16"/>
                         </Button>
                         
                         <!-- Title -->
-                        <Viewbox Grid.Column="1" Margin="0" Stretch="Uniform">
+                        <!--<Viewbox Grid.Column="1" Margin="0" Stretch="None" StretchDirection="UpOnly">
                             <TextBlock Text="{TemplateBinding Title}"/>
-                        </Viewbox>
+                        </Viewbox>-->
+                        <TextBlock Grid.Column="1" 
+                                   VerticalAlignment="Center"
+                                   Text="{TemplateBinding Title}"/>
                         
                         <!-- TitleBar Buttons -->
                         <StackPanel Grid.Column="2" Orientation="Horizontal">
                             <Button Command="{Binding MinimizeCommand}"
-                                    Style="{StaticResource WindowControlButton}"
+                                    Style="{StaticResource WindowControl}"
                                     Height="29" Width="45">
                                 <Path Style="{StaticResource Minimize_Path_Style}" />
                             </Button>
                             <Button Command="{Binding MaximizeCommand}"
-                                    Style="{StaticResource WindowControlButton}"
+                                    Style="{StaticResource WindowControl}"
                                     Height="29" Width="45">
                                 <Path Style="{StaticResource Maximize_Path_Style}" />
                             </Button>

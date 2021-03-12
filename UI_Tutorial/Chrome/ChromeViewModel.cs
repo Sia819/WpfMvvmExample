@@ -12,8 +12,12 @@ namespace UI_Tutorial.Chrome
         #region Private Member
 
         private Window _window;
-        private int _outerMarginSize = 10;
-        private int _windowRadius = 10;
+        // 윈도우 테두리 보더
+        private int _outerMarginSize = 1;
+        // 타이틀바 높이
+        private int _titleHeight = 30;
+        // 윈도우 둥글기
+        private int _windowRadius = 0;
         private ICommand _minimizeCommand;
         private ICommand _maximizeCommand;
         private ICommand _closeCommand;
@@ -23,15 +27,19 @@ namespace UI_Tutorial.Chrome
 
         #region Public Properties
 
-        public double WindowMinimumWidth { get; set; } = 400;
+        public double WindowMinimumWidth { get; set; } = 136;
 
-        public double WindowMinimumHeight { get; set; } = 400;
+        public double WindowMinimumHeight { get; set; } = 39;
 
         public WindowState WindowWindowState { get; set; }
 
-        public int ResizeBorder { get; set; } = 6;
+        public int ResizeBorder { get; set; } = 10; // 왜 굳이 프로퍼티로 남아야되는지 동영상에서 재확인
 
-        public Thickness ResizeBorderThickness { get => new Thickness(ResizeBorder + OuterMarginSize); }
+        // can drag to resize border area
+        public Thickness ResizeBorderThickness { get => new Thickness(ResizeBorder + OuterMarginSize,
+                                                                        OuterMarginSize,
+                                                                        ResizeBorder + OuterMarginSize,
+                                                                        ResizeBorder + OuterMarginSize); }
 
         public int OuterMarginSize
         {
@@ -49,9 +57,13 @@ namespace UI_Tutorial.Chrome
 
         public CornerRadius WindowCornerRadius { get => new CornerRadius(WindowRadius); }
 
-        public int TitleHeight { get; set; } = 30;
+        public int TitleHeight
+        {
+            get => _titleHeight;
+            set => Set(ref _titleHeight, value);
+        }
 
-        public GridLength TitleHeightGridLength { get => new GridLength(TitleHeight + ResizeBorder); }
+        public GridLength TitleHeightGridLength { get => new GridLength(TitleHeight); }
 
 
 
@@ -107,6 +119,7 @@ namespace UI_Tutorial.Chrome
 
         public ChromeViewModel(Window window)
         {
+
             _window = window;
             _window.StateChanged += (sender, e) =>
             {
@@ -129,7 +142,7 @@ namespace UI_Tutorial.Chrome
         private Point GetMousePosition(Window window)
         {
             var position = Mouse.GetPosition(window);
-            return new Point(position.X , position.Y);
+            return new Point(position.X, position.Y);
         }
 
         #endregion

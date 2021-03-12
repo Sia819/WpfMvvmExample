@@ -32,11 +32,12 @@
     
     <!-- Window Control Button -->
     <!-- TODO : BaseStyle Missed!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-    <Style TargetType="Button" x:Key="WindowControlButton">
+    <Style TargetType="{x:Type Button}" x:Key="WindowControlButton">
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Padding" Value="8"/>
         <Setter Property="Foreground" Value="{StaticResource ForegroundMainBrush}"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -51,7 +52,8 @@
 
 
     <!-- #region Title Button Style -->
-    <Style x:Key="WindowControl" TargetType="{x:Type Button}">
+    <Style TargetType="{x:Type Button}" x:Key="WindowControl">
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
         <Setter Property="Background" Value="White" />
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="Height" Value="{Binding MaximizeButton_Height}" />
@@ -104,7 +106,8 @@
     <!-- #endregion -->
     <!-- #region Close Button Style -->
     <!-- TODO : Use BaseStyle -->
-    <Style x:Key="WindowControl_Close" TargetType="{x:Type Button}">
+    <Style TargetType="{x:Type Button}" x:Key="WindowControl_Close">
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
         <Setter Property="Background" Value="White" />
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="Height" Value="{Binding MaximizeButton_Height}" />
