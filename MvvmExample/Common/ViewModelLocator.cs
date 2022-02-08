@@ -12,7 +12,7 @@
             SimpleIoc.Default.Register<ViewModel.Page3ViewModel>();
         }
 
-        public ViewModel.MainWindowViewModel MainWindowViewModel
+        public ViewModel.MainWindowViewModel MainWindowViewModelLocate
         { get => SimpleIoc.Default.GetInstance<ViewModel.MainWindowViewModel>(); }
     }
 }

@@ -40,6 +40,5 @@ namespace MvvmExample.UC
             set => SetValue(SelectedItemProperty, value);
         }
         #endregion
-
     }
 }

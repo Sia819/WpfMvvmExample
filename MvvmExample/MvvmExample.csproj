@@ -24,4 +24,8 @@
     <Resource Include="Image\page_26px_white.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Converter\" />
+  </ItemGroup>
+
 </Project>

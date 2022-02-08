@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Image\menu_32px_black.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Image\menu_32px_black.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="UC\MenuPanel - Copy.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UC\MenuPenel - Copy.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>MenuPanel.xaml.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UC\MenuPanel - Copy.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+</Project>
